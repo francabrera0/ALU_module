@@ -24,8 +24,7 @@ module ALU_module_tb;
     reg inA, inB, inC, inD;
     wire outA, outB;
 
-    // Instancia del módulo multi_compuerta
-    multi_compuerta uut (
+    ALU_module alu (
         .inA(inA),
         .inB(inB),
         .inC(inC),
@@ -35,29 +34,23 @@ module ALU_module_tb;
     );
 
     initial begin
-        // Abrir el archivo VCD
-        $dumpfile("tb_multi_compuerta.vcd");
-        $dumpvars(0, tb_multi_compuerta);
 
-        // Inicializar entradas
         inA = 0; inB = 0; inC = 0; inD = 0; #10;
         inA = 0; inB = 0; inC = 0; inD = 1; #10;
-          inA = 0; inB = 0; inC = 1; inD = 0; #10;
-          inA = 0; inB = 0; inC = 1; inD = 1; #10;
-          inA = 0; inB = 1; inC = 0; inD = 0; #10;
+        inA = 0; inB = 0; inC = 1; inD = 0; #10;
+        inA = 0; inB = 0; inC = 1; inD = 1; #10;
+        inA = 0; inB = 1; inC = 0; inD = 0; #10;
         inA = 0; inB = 1; inC = 0; inD = 1; #10;
-          inA = 0; inB = 1; inC = 1; inD = 0; #10;
-          inA = 0; inB = 1; inC = 1; inD = 1; #10;
-          inA = 1; inB = 0; inC = 0; inD = 0; #10;
+        inA = 0; inB = 1; inC = 1; inD = 0; #10;
+        inA = 0; inB = 1; inC = 1; inD = 1; #10;
+        inA = 1; inB = 0; inC = 0; inD = 0; #10;
         inA = 1; inB = 0; inC = 0; inD = 1; #10;
-          inA = 1; inB = 0; inC = 1; inD = 0; #10;
-          inA = 1; inB = 0; inC = 1; inD = 1; #10;
-          inA = 1; inB = 1; inC = 0; inD = 0; #10;
+        inA = 1; inB = 0; inC = 1; inD = 0; #10;
+        inA = 1; inB = 0; inC = 1; inD = 1; #10;
+        inA = 1; inB = 1; inC = 0; inD = 0; #10;
         inA = 1; inB = 1; inC = 0; inD = 1; #10;
-          inA = 1; inB = 1; inC = 1; inD = 0; #10;
-          inA = 1; inB = 1; inC = 1; inD = 1; #10;
+        inA = 1; inB = 1; inC = 1; inD = 0; #10;
+        inA = 1; inB = 1; inC = 1; inD = 1; #10;
 
-
-        $finish;
     end
 endmodule
