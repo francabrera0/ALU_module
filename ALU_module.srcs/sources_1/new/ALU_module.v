@@ -10,7 +10,6 @@ module ALU_module #(
     input wire  [DATA_LEN-1 : 0] i_operandB,
     input wire    [OP_LEN-1 : 0] i_opSelector,
     output wire [DATA_LEN-1 : 0] o_aluResult,
-    output wire                  o_carryOut, 
     output wire                  o_zero
 ); 
 
@@ -19,11 +18,12 @@ module ALU_module #(
     localparam AND = 6'b100100;
     localparam OR  = 6'b100101;
     localparam XOR = 6'b100110;
+    localparam NOR = 6'b100111;
     localparam SRA = 6'b000011;
     localparam SRL = 6'b000010;
-    localparam NOR = 6'b100111;
+
     
-    reg [DATA_LEN : 0] tempResult;
+    reg [DATA_LEN-1 : 0] tempResult;
     
     //Alu out
     assign o_aluResult = tempResult;
@@ -31,19 +31,24 @@ module ALU_module #(
     //Zero flag
     assign o_zero = & (~ o_aluResult);
     
-    //CarryOut
-    assign o_carryOut = tempResult[DATA_LEN];
-    
+   
     //Calculation
     always @(*)
         begin
             case(i_opSelector)
-                ADD: tempResult = i_operandA + i_operandB;
+                ADD:tempResult = $signed(i_operandA) + $signed(i_operandB);                
+                SUB: tempResult = $signed(i_operandA) - $signed(i_operandB);
+                
+                AND: tempResult = i_operandA & i_operandB;
+                OR : tempResult = i_operandA | i_operandB;
+                XOR: tempResult = i_operandA ^ i_operandB;
+                NOR: tempResult = ~(i_operandA | i_operandB);
+                
+                SRA: tempResult = $signed(i_operandA) >>> i_operandB;
+                SRL: tempResult = i_operandA >> i_operandB;
                 
                 default : tempResult = {DATA_LEN {1'b1}};
             endcase
         end
     
-    
-
 endmodule
