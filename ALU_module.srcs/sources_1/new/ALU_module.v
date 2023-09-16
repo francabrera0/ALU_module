@@ -10,8 +10,8 @@ module ALU_module #(
     input wire  [DATA_LEN-1 : 0] i_operandB,
     input wire    [OP_LEN-1 : 0] i_opSelector,
     output wire [DATA_LEN-1 : 0] o_aluResult,
-    output wire                  o_overFlow,
-    output wire                  o_zero
+    output wire                  o_zero,
+    output wire                  o_overFlow
 ); 
 
     localparam ADD = 6'b100000;
