@@ -2,7 +2,8 @@
 
 module SumadorRestador#(
     parameter DATA_LEN  = 32
-)(
+)
+(
     input wire signed  [DATA_LEN-1 : 0] i_operandA,
     input wire signed  [DATA_LEN-1 : 0] i_operandB,
     input wire                          i_substract,

@@ -20,7 +20,8 @@ module ALU_module_tb;
     reg  [DATA_LEN-1 : 0] i_operandB;
     reg  [OP_LEN-1 : 0]   i_opSelector;
     wire [DATA_LEN-1 : 0] o_aluResult;
-    wire                  o_zero; 
+    wire                  o_zero;
+    wire                  o_overFlow; 
     
     ALU_module #(
         .DATA_LEN(DATA_LEN),
@@ -31,7 +32,8 @@ module ALU_module_tb;
         .i_operandB(i_operandB),
         .i_opSelector(i_opSelector),
         .o_aluResult(o_aluResult),
-        .o_zero(o_zero)
+        .o_zero(o_zero),
+        .o_overFlow(o_overFlow)
     );
 
     reg [7:0] i;
@@ -51,13 +53,13 @@ module ALU_module_tb;
             for(j = 0; j < 8; j = j + 1)
                 begin             
                 
-                for(i = 0; i<5; i = i + 1)
+                for(i = 0; i<4; i = i + 1)
                     begin
                         i_operandA = $random(seed);
                         i_operandB = $random(seed) % maxRandom;
                         
                         case(i_opSelector)             
-                            ADD:temporalResult = $signed(i_operandA) + $signed(i_operandB);                  
+                            ADD:temporalResult = $signed(i_operandA) + $signed(i_operandB);                 
                             SUB: temporalResult = $signed(i_operandA) - $signed(i_operandB);
                     
                             AND: temporalResult = i_operandA & i_operandB;
