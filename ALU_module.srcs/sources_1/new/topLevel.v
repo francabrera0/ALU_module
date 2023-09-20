@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1us / 1ns
 
 module topLevel#(
     parameter DATA_LEN  = 8,

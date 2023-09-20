@@ -1,9 +1,9 @@
-`timescale 1ns / 1ps
+`timescale 1us / 1ns
 
-module topLevel_tb;
+module topLevel_tb();
 
-  localparam DATA_LEN = 8;
-  localparam OP_LEN = 6;
+  parameter DATA_LEN = 8;
+  parameter OP_LEN = 6;
 
   reg [DATA_LEN-1 : 0] i_operandSwitches;
   reg [OP_LEN-1 : 0] i_operationSwitches;
@@ -72,6 +72,7 @@ module topLevel_tb;
     i_operationSBttn = 0;
     i_resultBttn = 0;
 
+    #30 
     for(j = 0; j < 8; j = j + 1)
     begin
 

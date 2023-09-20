@@ -13,8 +13,8 @@ module SumadorRestador#(
   
     //Invertir bits si se resta
     wire signed [DATA_LEN-1 : 0] operandB;
-    wire [DATA_LEN-1 : 0] ctrl = {DATA_LEN {i_substract}};
-    assign operandB = i_operandB ^ ctrl;
+
+    assign operandB = i_operandB ^  {DATA_LEN {i_substract}};
 
     //Calculo - Sumar 1 si se resta pq es suma resta signada
     assign o_result = i_operandA + operandB + {{DATA_LEN - 1{1'b0}}, i_substract};           

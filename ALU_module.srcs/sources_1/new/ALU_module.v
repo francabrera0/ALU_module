@@ -41,7 +41,6 @@ module ALU_module #(
     
     
     reg [DATA_LEN-1 : 0] tempResult;
-
     
     //Alu out
     assign o_aluResult = tempResult;
