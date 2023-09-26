@@ -85,6 +85,9 @@
 !*.bmm
 !*.xmp
 
+!*.md
+!*.png
+
 ALU_module.runs/
 ALU_module.sim/
 ALU_module.ip_user_files/
